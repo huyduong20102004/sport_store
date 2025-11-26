@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}SportZone - Cửa hàng thể thao chuyên nghiệp{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="left">
+        <a class="logo" href="{{ url_for('index') }}">
+          <i class="fas fa-dumbbell"></i> SportZone
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="{{ url_for('index') }}" class="nav-btn {% if request.endpoint == 'index' %}active{% endif %}">
+          <i class="fas fa-home"></i> Trang chủ
+        </a>
+        <a href="{{ url_for('products_page') }}" class="nav-btn {% if request.endpoint == 'products_page' %}active{% endif %}">
+          <i class="fas fa-shopping-bag"></i> Sản phẩm
+        </a>
+        <a href="{{ url_for('about') }}" class="nav-btn {% if request.endpoint == 'about' %}active{% endif %}">
+          <i class="fas fa-info-circle"></i> Giới thiệu
+        </a>
+        <a href="{{ url_for('contact') }}" class="nav-btn {% if request.endpoint == 'contact' %}active{% endif %}">
+          <i class="fas fa-envelope"></i> Liên hệ
+        </a>
+      </nav>
+      <div class="right">
+        {% if session.get('username') %}
+          <span><i class="fas fa-user-circle"></i> Xin chào, <strong>{{ session.get('username') }}</strong></span>
+          <a href="{{ url_for('logout') }}" class="auth-btn">
+            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+          </a>
+        {% else %}
+          <a href="#" class="auth-btn" onclick="openLoginModal(); return false;">
+            <svg class="custom-icon" style="width: 18px; height: 18px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+              <polyline points="10 17 15 12 10 7"></polyline>
+              <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+            Đăng nhập
+          </a>
+          <a href="#" class="auth-btn" onclick="openRegisterModal(); return false;">
+            <svg class="custom-icon" style="width: 18px; height: 18px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            Đăng ký
+          </a>
+        {% endif %}
+        <a href="{{ url_for('view_cart') }}" class="cart-preview">
+          <i class="fas fa-shopping-cart"></i> Giỏ hàng ({{ session.get('cart')|length if session.get('cart') else 0 }})
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <!-- Thông tin học tập -->
+      <div class="footer-academic-card">
+        <div class="footer-card-header">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Thông tin học tập</h3>
+        </div>
+        <div class="footer-card-body">
+          <div class="footer-info-item">
+            <span class="footer-label">NHÓM:</span>
+            <span class="footer-value">Nhóm 3</span>
+          </div>
+          <div class="footer-info-item">
+            <span class="footer-label">MÔN HỌC:</span>
+            <span class="footer-value">Thương mại điện tử</span>
+          </div>
+          <div class="footer-info-item">
+            <span class="footer-label">GIẢNG VIÊN:</span>
+            <span class="footer-value">Vũ Thị Nữ</span>
+          </div>
+          <div class="footer-info-item footer-contact-item">
+            <span class="footer-label">LIÊN HỆ:</span>
+            <div class="footer-contact-details">
+              <div><i class="fas fa-envelope"></i> nguyenminhdang0202@gmail.com</div>
+              <div><i class="fas fa-phone"></i> 0343285733</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách thành viên -->
+      <div class="footer-members-card">
+        <div class="footer-card-header">
+          <i class="fas fa-users"></i>
+          <h3>Danh sách thành viên</h3>
+        </div>
+        <div class="footer-card-body">
+          <div class="footer-members-grid">
+            <div class="footer-member-column">
+              <div class="footer-member-item">
+                <span class="footer-member-number">01</span>
+                <span class="footer-member-name">Trịnh Ý Chí</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">02</span>
+                <span class="footer-member-name">Ngô Thị Thanh Hà</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">03</span>
+                <span class="footer-member-name">Huỳnh Thúy Nga</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">04</span>
+                <span class="footer-member-name">Nguyễn Thị Trà My</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">05</span>
+                <span class="footer-member-name">Trương Gia Phong</span>
+              </div>
+            </div>
+            <div class="footer-member-column">
+              <div class="footer-member-item">
+                <span class="footer-member-number">06</span>
+                <span class="footer-member-name">Nguyễn Minh Tuấn</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">07</span>
+                <span class="footer-member-name">Phan Thị Lan</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">08</span>
+                <span class="footer-member-name">Trần Nhật Nam</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">09</span>
+                <span class="footer-member-name">Nguyễn Hữu Bảo Nguyên</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">10</span>
+                <span class="footer-member-name">Nguyễn Minh Đăng</span>
+              </div>
+            </div>
+            <div class="footer-member-column">
+              <div class="footer-member-item">
+                <span class="footer-member-number">11</span>
+                <span class="footer-member-name">Hồ Nguyễn Thị Nhiều</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">12</span>
+                <span class="footer-member-name">Nguyễn Thị Ngọc Nhung</span>
+              </div>
+              <div class="footer-member-item">
+                <span class="footer-member-number">13</span>
+                <span class="footer-member-name">Bùi Lê Ngọc Hà</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="auth-modal" style="display: none;">
+    <div class="auth-modal-overlay" onclick="closeLoginModal()"></div>
+    <div class="auth-modal-content">
+      <button class="auth-modal-close" onclick="closeLoginModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="auth-modal-left">
+        <div class="auth-modal-decoration">
+          <svg class="auth-decoration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <h2>Chào Mừng Trở Lại!</h2>
+          <p>Đăng nhập để trải nghiệm mua sắm tuyệt vời</p>
+          <div class="auth-features">
+            <div class="auth-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Theo dõi đơn hàng</span>
+            </div>
+            <div class="auth-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Ưu đãi độc quyền</span>
+            </div>
+            <div class="auth-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Hỗ trợ 24/7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="auth-modal-right">
+        <div class="auth-modal-header">
+          <h2>Đăng Nhập</h2>
+          <p>Vui lòng nhập thông tin tài khoản</p>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              {% if category == 'danger' and 'đăng nhập' in message.lower() %}
+                <div style="padding: 12px; margin-bottom: 20px; background: #fee; border-left: 4px solid #f44; border-radius: 8px; color: #c33; font-size: 14px;">
+                  <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  {{ message }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        <form method="post" action="{{ url_for('login') }}" class="auth-modal-form">
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              Tài khoản
+            </label>
+            <input type="text" name="username" required placeholder="Nhập tên tài khoản">
+          </div>
+          
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              Mật khẩu
+            </label>
+            <input type="password" name="password" required placeholder="Nhập mật khẩu">
+          </div>
+          
+          <div class="auth-form-options">
+            <label class="auth-checkbox">
+              <input type="checkbox" name="remember">
+              <span>Ghi nhớ đăng nhập</span>
+            </label>
+            <a href="#" class="auth-forgot-link">Quên mật khẩu?</a>
+          </div>
+          
+          <button type="submit" class="auth-submit-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+              <polyline points="10 17 15 12 10 7"></polyline>
+              <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+            Đăng Nhập
+          </button>
+          
+          <p class="auth-switch-text">
+            Chưa có tài khoản? <a href="#" onclick="switchToRegister(); return false;">Đăng ký ngay</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="auth-modal" style="display: none;">
+    <div class="auth-modal-overlay" onclick="closeRegisterModal()"></div>
+    <div class="auth-modal-content">
+      <button class="auth-modal-close" onclick="closeRegisterModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="auth-modal-left register">
+        <div class="auth-modal-decoration">
+          <svg class="auth-decoration-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="8.5" cy="7" r="4"></circle>
+            <line x1="20" y1="8" x2="20" y2="14"></line>
+            <line x1="23" y1="11" x2="17" y2="11"></line>
+          </svg>
+          <h2>Tham Gia Với Chúng Tôi!</h2>
+          <p>Tạo tài khoản để nhận ưu đãi đặc biệt</p>
+          <div class="auth-features">
+            <div class="auth-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Miễn phí vận chuyển</span>
+            </div>
+            <div class="auth-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Tích điểm thưởng</span>
+            </div>
+            <div class="auth-feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Ưu đãi sinh nhật</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="auth-modal-right">
+        <div class="auth-modal-header">
+          <h2>Đăng Ký</h2>
+          <p>Tạo tài khoản mới hoàn toàn miễn phí</p>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              {% if category == 'success' %}
+                <div style="padding: 12px; margin-bottom: 20px; background: #d1fae5; border-left: 4px solid #10b981; border-radius: 8px; color: #065f46; font-size: 14px;">
+                  <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  {{ message }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        <form method="post" action="{{ url_for('register') }}" class="auth-modal-form">
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              Họ và tên
+            </label>
+            <input type="text" name="fullname" required placeholder="Nhập họ và tên">
+          </div>
+          
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Email
+            </label>
+            <input type="email" name="email" required placeholder="example@email.com">
+          </div>
+          
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              Tên tài khoản
+            </label>
+            <input type="text" name="username" required placeholder="Chọn tên tài khoản">
+          </div>
+          
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              Mật khẩu
+            </label>
+            <input type="password" name="password" required placeholder="Tạo mật khẩu mạnh">
+          </div>
+          
+          <div class="auth-form-group">
+            <label>
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              Xác nhận mật khẩu
+            </label>
+            <input type="password" name="confirm_password" required placeholder="Nhập lại mật khẩu">
+          </div>
+          
+          <div class="auth-form-options">
+            <label class="auth-checkbox">
+              <input type="checkbox" name="agree_terms" required>
+              <span>Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a></span>
+            </label>
+          </div>
+          
+          <button type="submit" class="auth-submit-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            Đăng Ký
+          </button>
+          
+          <p class="auth-switch-text">
+            Đã có tài khoản? <a href="#" onclick="switchToLogin(); return false;">Đăng nhập</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openLoginModal() {
+      document.getElementById('loginModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLoginModal() {
+      document.getElementById('loginModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    function openRegisterModal() {
+      document.getElementById('registerModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeRegisterModal() {
+      document.getElementById('registerModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    function switchToRegister() {
+      closeLoginModal();
+      setTimeout(openRegisterModal, 300);
+    }
+    
+    function switchToLogin() {
+      closeRegisterModal();
+      setTimeout(openLoginModal, 300);
+    }
+    
+    function showOAuthMessage(provider) {
+      alert('Đăng nhập bằng ' + provider + ' hiện chưa khả dụng.\n\nĐể sử dụng tính năng này, vui lòng:\n1. Đọc hướng dẫn trong file OAUTH_SETUP.md\n2. Đăng ký ứng dụng trên ' + provider + ' Developer Console\n3. Cấu hình Client ID và Client Secret\n\nHiện tại, vui lòng sử dụng đăng ký/đăng nhập bằng tài khoản thông thường.');
+    }
+    
+    // Auto-open modal if there's an error
+    {% if session.get('_open_login_modal') %}
+      openLoginModal();
+      {{ session.pop('_open_login_modal') or '' }}
+    {% endif %}
+    
+    {% if session.get('_open_register_modal') %}
+      openRegisterModal();
+      {{ session.pop('_open_register_modal') or '' }}
+    {% endif %}
+    
+    // Close modals on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLoginModal();
+        closeRegisterModal();
+      }
+    });
+  </script>
+
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}Liên hệ - SportZone{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%); padding: 3rem 2rem; border-radius: 20px; margin-bottom: 3rem; text-align: center;">
+  <h1 style="font-size: 3rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem;">
+    <svg class="custom-icon" style="width: 50px; height: 50px; vertical-align: middle; color: var(--primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
+    Liên Hệ Với Chúng Tôi
+  </h1>
+  <p style="font-size: 1.2rem; color: var(--text); max-width: 700px; margin: 0 auto;">
+    Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ ngay!
+  </p>
+</section>
+
+<!-- Contact Info Cards -->
+<section style="margin-bottom: 3rem;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <!-- Phone -->
+    <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--primary);">
+      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+        <svg class="custom-icon" style="width: 35px; height: 35px;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;">Điện Thoại</h3>
+      <p style="color: var(--text); margin-bottom: 0.5rem;">Liên hệ trực tiếp</p>
+      <a href="tel:0343285733" style="color: var(--primary); font-weight: 600; text-decoration: none; font-size: 1.1rem;">0343285733</a>
+    </div>
+
+    <!-- Email -->
+    <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--secondary);">
+      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+        <svg class="custom-icon" style="width: 35px; height: 35px;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;">Email</h3>
+      <p style="color: var(--text); margin-bottom: 0.5rem;">Gửi email cho chúng tôi</p>
+      <a href="mailto:nguyenminhdang0202@gmail.com" style="color: var(--secondary); font-weight: 600; text-decoration: none; font-size: 1.05rem; word-break: break-word; display: block; padding: 0 0.5rem;">nguyenminhdang0202@gmail.com</a>
+    </div>
+
+    <!-- Location -->
+    <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--accent-green);">
+      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+        <svg class="custom-icon" style="width: 35px; height: 35px;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;">Địa Chỉ</h3>
+      <p style="color: var(--text); margin-bottom: 0.5rem;">Cửa hàng chính</p>
+      <p style="color: var(--accent-green); font-weight: 600; font-size: 1.05rem;">TP Quy Nhơn, Bình Định</p>
+    </div>
+
+    <!-- Hours -->
+    <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--accent-purple);">
+      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent-purple) 0%, #7c3aed 100%); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+        <svg class="custom-icon" style="width: 35px; height: 35px;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;">Giờ Mở Cửa</h3>
+      <p style="color: var(--text); margin-bottom: 0.5rem;">Thứ 2 - Chủ Nhật</p>
+      <p style="color: var(--accent-purple); font-weight: 600; font-size: 1.05rem;">8:00 - 22:00</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form & Map -->
+<section style="margin-bottom: 3rem;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <!-- Contact Form -->
+    <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border);">
+      <h2 style="font-size: 2rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem;">Gửi Tin Nhắn</h2>
+      <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.6;">Điền thông tin bên dưới và chúng tôi sẽ phản hồi trong vòng 24 giờ</p>
+      
+      <form class="contact-form" method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; font-size: 0.95rem;">
+              <svg class="custom-icon" style="width: 16px; height: 16px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              Họ và Tên
+            </label>
+            <input type="text" name="name" required placeholder="Nguyễn Văn A" style="width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: var(--transition); font-family: 'Poppins', sans-serif;">
+          </div>
+          <div>
+            <label style="display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; font-size: 0.95rem;">
+              <svg class="custom-icon" style="width: 16px; height: 16px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              Số Điện Thoại
+            </label>
+            <input type="tel" name="phone" required placeholder="0912345678" style="width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: var(--transition); font-family: 'Poppins', sans-serif;">
+          </div>
+        </div>
+        
+        <div>
+          <label style="display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; font-size: 0.95rem;">
+            <svg class="custom-icon" style="width: 16px; height: 16px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Email
+          </label>
+          <input type="email" name="email" required placeholder="example@email.com" style="width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: var(--transition); font-family: 'Poppins', sans-serif;">
+        </div>
+        
+        <div>
+          <label style="display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; font-size: 0.95rem;">
+            <svg class="custom-icon" style="width: 16px; height: 16px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Nội Dung
+          </label>
+          <textarea name="message" required rows="5" placeholder="Nhập nội dung tin nhắn của bạn..." style="width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: var(--transition); resize: vertical; font-family: 'Poppins', sans-serif; line-height: 1.6;"></textarea>
+        </div>
+        
+        <button type="submit" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <svg class="custom-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Gửi Tin Nhắn
+        </button>
+      </form>
+    </div>
+
+    <!-- Google Map -->
+    <div style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border);">
+      <h2 style="font-size: 2rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem;">Vị Trí Cửa Hàng</h2>
+      <p style="color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.6;">
+        <svg class="custom-icon" style="width: 18px; height: 18px; vertical-align: middle; color: var(--accent-green);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        TP Quy Nhơn, Bình Định, Việt Nam
+      </p>
+      
+      <!-- Google Maps Embed -->
+      <div style="position: relative; width: 100%; height: 450px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62143.36384374536!2d109.19463402167967!3d13.781726999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f6bfa7f31e671%3A0xd2b5a703f12c0f0!2sQuy%20Nh%C6%A1n%2C%20B%C3%ACnh%20%C4%90%E1%BB%8Bnh%2C%20Vietnam!5e0!3m2!1sen!2s!4v1732624000000!5m2!1sen!2s" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      
+      <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-light); border-radius: 12px;">
+        <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.8rem;">Hướng Dẫn Đến Cửa Hàng</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="padding: 0.5rem 0; color: var(--text); display: flex; align-items: start; gap: 0.5rem;">
+            <svg class="custom-icon" style="width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            Gần khu vực trung tâm thành phố
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text); display: flex; align-items: start; gap: 0.5rem;">
+            <svg class="custom-icon" style="width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            Có bãi đỗ xe rộng rãi
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text); display: flex; align-items: start; gap: 0.5rem;">
+            <svg class="custom-icon" style="width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            Dễ dàng tiếp cận từ mọi hướng
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section style="background: var(--bg-light); padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem;">
+  <h2 style="text-align: center; font-size: 2.5rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem;">Câu Hỏi Thường Gặp</h2>
+  <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">Một số câu hỏi mà khách hàng thường quan tâm</p>
+  
+  <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 1rem;">
+    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow);">
+      <h4 style="font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">
+        <svg class="custom-icon" style="width: 20px; height: 20px; vertical-align: middle; color: var(--primary);" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="white" stroke-width="2" fill="none"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17" stroke="white" stroke-width="2"></line>
+        </svg>
+        Làm sao để đặt hàng online?
+      </h4>
+      <p style="color: var(--text-light); line-height: 1.6;">Bạn có thể duyệt sản phẩm trên website, thêm vào giỏ hàng và thanh toán. Chúng tôi hỗ trợ giao hàng toàn quốc.</p>
+    </div>
+    
+    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow);">
+      <h4 style="font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">
+        <svg class="custom-icon" style="width: 20px; height: 20px; vertical-align: middle; color: var(--primary);" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="white" stroke-width="2" fill="none"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17" stroke="white" stroke-width="2"></line>
+        </svg>
+        Chính sách đổi trả như thế nào?
+      </h4>
+      <p style="color: var(--text-light); line-height: 1.6;">Đổi trả trong vòng 7 ngày nếu sản phẩm lỗi, chưa qua sử dụng và còn nguyên tem mác.</p>
+    </div>
+    
+    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow);">
+      <h4 style="font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">
+        <svg class="custom-icon" style="width: 20px; height: 20px; vertical-align: middle; color: var(--primary);" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="white" stroke-width="2" fill="none"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17" stroke="white" stroke-width="2"></line>
+        </svg>
+        Có hỗ trợ tư vấn chọn size không?
+      </h4>
+      <p style="color: var(--text-light); line-height: 1.6;">Có, chúng tôi có bảng size chi tiết và đội ngũ tư vấn nhiệt tình qua hotline và chat online.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.contact-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  section > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.6rem !important;
+  }
+  
+  .contact-form > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+{% endblock %}

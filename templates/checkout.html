@@ -1,0 +1,772 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.checkout-container {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.checkout-hero {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  color: white;
+}
+
+.checkout-hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.checkout-steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.checkout-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 25px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.checkout-step.active {
+  background: white;
+  color: #667eea;
+}
+
+.checkout-step-number {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.checkout-step.active .checkout-step-number {
+  background: #667eea;
+  color: white;
+}
+
+.checkout-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 30px;
+}
+
+.checkout-main {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+  padding: 40px;
+}
+
+.checkout-section {
+  margin-bottom: 40px;
+}
+
+.checkout-section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkout-section-title svg {
+  width: 28px;
+  height: 28px;
+  stroke: #667eea;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.payment-method-card {
+  position: relative;
+  padding: 30px;
+  border: 3px solid #e0e0e0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: #fafafa;
+}
+
+.payment-method-card:hover {
+  border-color: #667eea;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+
+.payment-method-card.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+.payment-method-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-method-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+}
+
+.payment-method-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.payment-method-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.payment-method-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.payment-details {
+  display: none;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+
+.payment-details.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.payment-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.payment-form-group {
+  margin-bottom: 20px;
+}
+
+.payment-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.payment-form-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.payment-form-group input,
+.payment-form-group select {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.payment-form-group input:focus,
+.payment-form-group select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.card-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-icon {
+  width: 50px;
+  height: 32px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #666;
+}
+
+.bank-select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.bank-option {
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bank-option:hover {
+  border-color: #667eea;
+}
+
+.bank-option.active {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.bank-option input[type="radio"] {
+  display: none;
+}
+
+.bank-option img {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  object-fit: contain;
+}
+
+.bank-option-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.checkout-sidebar {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+  padding: 30px;
+  position: sticky;
+  top: 20px;
+}
+
+.checkout-sidebar h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.checkout-item {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: #fafafa;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.checkout-item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.checkout-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checkout-item-details {
+  flex: 1;
+}
+
+.checkout-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.checkout-item-qty {
+  font-size: 13px;
+  color: #666;
+}
+
+.checkout-item-price {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 15px;
+}
+
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.checkout-summary-label {
+  color: #666;
+  font-size: 15px;
+}
+
+.checkout-summary-value {
+  font-weight: 700;
+  color: #333;
+  font-size: 15px;
+}
+
+.checkout-summary-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0 0 0;
+  margin-top: 10px;
+  border-top: 3px solid #667eea;
+}
+
+.checkout-summary-total .checkout-summary-label {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.checkout-summary-total .checkout-summary-value {
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.checkout-submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.checkout-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.checkout-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #555;
+  font-weight: 600;
+}
+
+.checkout-security svg {
+  width: 20px;
+  height: 20px;
+  stroke: #28a745;
+}
+
+@media (max-width: 1024px) {
+  .checkout-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkout-sidebar {
+    position: static;
+  }
+  
+  .payment-methods {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-hero h1 {
+    font-size: 32px;
+  }
+  
+  .checkout-steps {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .payment-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bank-select {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+
+<div class="checkout-container">
+  <div class="checkout-hero">
+    <h1>
+      <svg style="width: 48px; height: 48px; display: inline-block; vertical-align: middle; margin-right: 10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+        <line x1="1" y1="10" x2="23" y2="10"></line>
+      </svg>
+      Thanh Toán Đơn Hàng
+    </h1>
+    <div class="checkout-steps">
+      <div class="checkout-step">
+        <span class="checkout-step-number">✓</span>
+        <span>Giỏ hàng</span>
+      </div>
+      <div class="checkout-step active">
+        <span class="checkout-step-number">2</span>
+        <span>Thanh toán</span>
+      </div>
+      <div class="checkout-step">
+        <span class="checkout-step-number">3</span>
+        <span>Hoàn tất</span>
+      </div>
+    </div>
+  </div>
+
+  <form method="post" action="{{ url_for('checkout') }}" id="checkoutForm">
+    <div class="checkout-content">
+      <div class="checkout-main">
+        <!-- Payment Method Selection -->
+        <div class="checkout-section">
+          <h2 class="checkout-section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            Chọn phương thức thanh toán
+          </h2>
+          
+          <div class="payment-methods">
+            <label class="payment-method-card active" for="payment-card">
+              <input type="radio" name="payment_method" id="payment-card" value="card" checked>
+              <div class="payment-method-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+              </div>
+              <h3>Thẻ Tín Dụng/Ghi Nợ</h3>
+              <p>Visa, Mastercard, JCB</p>
+            </label>
+            
+            <label class="payment-method-card" for="payment-bank">
+              <input type="radio" name="payment_method" id="payment-bank" value="bank">
+              <div class="payment-method-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+              <h3>Chuyển Khoản Ngân Hàng</h3>
+              <p>Chuyển khoản trực tuyến</p>
+            </label>
+          </div>
+          
+          <!-- Card Payment Details -->
+          <div id="cardDetails" class="payment-details active">
+            <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 20px; color: #333;">Thông tin thẻ thanh toán</h4>
+            <div class="payment-form-grid">
+              <div class="payment-form-group full-width">
+                <label>Số thẻ *</label>
+                <input type="text" name="card_number" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                <div class="card-icons">
+                  <div class="card-icon">VISA</div>
+                  <div class="card-icon">MC</div>
+                  <div class="card-icon">JCB</div>
+                </div>
+              </div>
+              
+              <div class="payment-form-group full-width">
+                <label>Tên chủ thẻ *</label>
+                <input type="text" name="card_name" placeholder="NGUYEN VAN A" required>
+              </div>
+              
+              <div class="payment-form-group">
+                <label>Ngày hết hạn *</label>
+                <input type="text" name="card_expiry" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+              </div>
+              
+              <div class="payment-form-group">
+                <label>Mã CVV *</label>
+                <input type="text" name="card_cvv" id="cardCVV" placeholder="123" maxlength="4" required>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bank Transfer Details -->
+          <div id="bankDetails" class="payment-details">
+            <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 20px; color: #333;">Chọn ngân hàng</h4>
+            <div class="bank-select">
+              <label class="bank-option active" for="bank-vcb">
+                <input type="radio" name="bank_name" id="bank-vcb" value="Vietcombank" checked>
+                <div style="width: 60px; height: 60px; margin: 0 auto 10px; background: #007f3d; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 14px;">VCB</div>
+                <div class="bank-option-name">Vietcombank</div>
+              </label>
+              
+              <label class="bank-option" for="bank-vt">
+                <input type="radio" name="bank_name" id="bank-vt" value="Vietinbank">
+                <div style="width: 60px; height: 60px; margin: 0 auto 10px; background: #003087; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 16px;">VTB</div>
+                <div class="bank-option-name">Vietinbank</div>
+              </label>
+              
+              <label class="bank-option" for="bank-bidv">
+                <input type="radio" name="bank_name" id="bank-bidv" value="BIDV">
+                <div style="width: 60px; height: 60px; margin: 0 auto 10px; background: #00467f; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 14px;">BIDV</div>
+                <div class="bank-option-name">BIDV</div>
+              </label>
+              
+              <label class="bank-option" for="bank-acb">
+                <input type="radio" name="bank_name" id="bank-acb" value="ACB">
+                <div style="width: 60px; height: 60px; margin: 0 auto 10px; background: linear-gradient(135deg, #00a65a 0%, #008c4a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 16px;">ACB</div>
+                <div class="bank-option-name">ACB</div>
+              </label>
+              
+              <label class="bank-option" for="bank-tp">
+                <input type="radio" name="bank_name" id="bank-tp" value="TPBank">
+                <div style="width: 60px; height: 60px; margin: 0 auto 10px; background: #8b008b; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 14px;">TPB</div>
+                <div class="bank-option-name">TPBank</div>
+              </label>
+              
+              <label class="bank-option" for="bank-mb">
+                <input type="radio" name="bank_name" id="bank-mb" value="MBBank">
+                <div style="width: 60px; height: 60px; margin: 0 auto 10px; background: #0058a3; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 16px;">MB</div>
+                <div class="bank-option-name">MBBank</div>
+              </label>
+            </div>
+            
+            <div class="payment-form-grid">
+              <div class="payment-form-group full-width">
+                <label>Số tài khoản *</label>
+                <input type="text" name="account_number" placeholder="Nhập số tài khoản ngân hàng">
+              </div>
+              
+              <div class="payment-form-group full-width">
+                <label>Tên chủ tài khoản *</label>
+                <input type="text" name="account_holder" placeholder="NGUYEN VAN A">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Order Summary -->
+      <div class="checkout-sidebar">
+        <h3>Đơn hàng của bạn</h3>
+        
+        {% for item in items %}
+        <div class="checkout-item">
+          <div class="checkout-item-image">
+            <img src="{{ item.image_url }}" alt="{{ item.name }}">
+          </div>
+          <div class="checkout-item-details">
+            <div class="checkout-item-name">{{ item.name }}</div>
+            <div class="checkout-item-qty">Số lượng: {{ item.qty }}</div>
+          </div>
+          <div class="checkout-item-price">{{ "{:,.0f}".format(item.subtotal) }} VND</div>
+        </div>
+        {% endfor %}
+        
+        <div class="checkout-summary-row">
+          <span class="checkout-summary-label">Tạm tính</span>
+          <span class="checkout-summary-value">{{ "{:,.0f}".format(total) }} VND</span>
+        </div>
+        
+        <div class="checkout-summary-row">
+          <span class="checkout-summary-label">Phí vận chuyển</span>
+          <span class="checkout-summary-value">Miễn phí</span>
+        </div>
+        
+        <div class="checkout-summary-row">
+          <span class="checkout-summary-label">Thuế VAT</span>
+          <span class="checkout-summary-value">0 VND</span>
+        </div>
+        
+        <div class="checkout-summary-total">
+          <span class="checkout-summary-label">Tổng cộng</span>
+          <span class="checkout-summary-value">{{ "{:,.0f}".format(total) }} VND</span>
+        </div>
+        
+        <button type="submit" class="checkout-submit-btn">
+          <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Xác nhận thanh toán
+        </button>
+        
+        <div class="checkout-security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Thanh toán được mã hóa an toàn SSL
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+// Payment method switching
+const paymentMethods = document.querySelectorAll('.payment-method-card');
+const cardDetails = document.getElementById('cardDetails');
+const bankDetails = document.getElementById('bankDetails');
+
+paymentMethods.forEach(method => {
+  method.addEventListener('click', function() {
+    paymentMethods.forEach(m => m.classList.remove('active'));
+    this.classList.add('active');
+    
+    const radio = this.querySelector('input[type="radio"]');
+    if (radio.value === 'card') {
+      cardDetails.classList.add('active');
+      bankDetails.classList.remove('active');
+      // Make card fields required
+      document.querySelectorAll('#cardDetails input').forEach(input => input.required = true);
+      document.querySelectorAll('#bankDetails input').forEach(input => input.required = false);
+    } else {
+      cardDetails.classList.remove('active');
+      bankDetails.classList.add('active');
+      // Make bank fields required
+      document.querySelectorAll('#cardDetails input').forEach(input => input.required = false);
+      document.querySelectorAll('#bankDetails input').forEach(input => input.required = true);
+    }
+  });
+});
+
+// Bank selection
+const bankOptions = document.querySelectorAll('.bank-option');
+bankOptions.forEach(option => {
+  option.addEventListener('click', function() {
+    bankOptions.forEach(o => o.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Card number formatting
+const cardNumberInput = document.getElementById('cardNumber');
+if (cardNumberInput) {
+  cardNumberInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s/g, '');
+    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+    e.target.value = formattedValue;
+  });
+}
+
+// Card expiry formatting
+const cardExpiryInput = document.getElementById('cardExpiry');
+if (cardExpiryInput) {
+  cardExpiryInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2, 4);
+    }
+    e.target.value = value;
+  });
+}
+
+// CVV numeric only
+const cardCVVInput = document.getElementById('cardCVV');
+if (cardCVVInput) {
+  cardCVVInput.addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+  });
+}
+
+// Form validation
+const checkoutForm = document.getElementById('checkoutForm');
+if (checkoutForm) {
+  checkoutForm.addEventListener('submit', function(e) {
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+    
+    if (paymentMethod === 'card') {
+      const cardNumber = document.querySelector('input[name="card_number"]').value.replace(/\s/g, '');
+      const cardExpiry = document.querySelector('input[name="card_expiry"]').value;
+      const cardCVV = document.querySelector('input[name="card_cvv"]').value;
+      
+      if (cardNumber.length < 13 || cardNumber.length > 19) {
+        e.preventDefault();
+        alert('Số thẻ không hợp lệ. Vui lòng kiểm tra lại.');
+        return;
+      }
+      
+      if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) {
+        e.preventDefault();
+        alert('Ngày hết hạn không hợp lệ. Vui lòng nhập theo định dạng MM/YY.');
+        return;
+      }
+      
+      if (cardCVV.length < 3 || cardCVV.length > 4) {
+        e.preventDefault();
+        alert('Mã CVV không hợp lệ. Vui lòng kiểm tra lại.');
+        return;
+      }
+    } else if (paymentMethod === 'bank') {
+      const accountNumber = document.querySelector('input[name="account_number"]').value;
+      const accountHolder = document.querySelector('input[name="account_holder"]').value;
+      
+      if (!accountNumber || !accountHolder) {
+        e.preventDefault();
+        alert('Vui lòng nhập đầy đủ thông tin tài khoản ngân hàng.');
+        return;
+      }
+    }
+  });
+}
+</script>
+
+{% endblock %}

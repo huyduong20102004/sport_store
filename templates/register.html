@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Đăng ký</h2>
+<form method="post" class="auth-form">
+  <label>Tài khoản</label>
+  <input name="username" required>
+  <label>Mật khẩu</label>
+  <input name="password" type="password" required>
+  <button type="submit">Đăng ký</button>
+</form>
+{% endblock %}

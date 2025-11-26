@@ -1,0 +1,348 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ - SportZone{% endblock %}
+
+{% block content %}
+<!-- Image Carousel -->
+<section class="hero-carousel-fullwidth">
+  <div class="carousel-container-fullwidth">
+    <div class="carousel-slides">
+      <div class="carousel-slide active">
+        <div class="carousel-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1920&h=600&fit=crop" alt="Giày thể thao">
+        <div class="carousel-content">
+          <h1>Giày Thể Thao Chính Hãng</h1>
+          <p>Bộ sưu tập giày từ Nike, Adidas, Puma với đầy đủ size và mẫu mã mới nhất</p>
+          <a href="{{ url_for('products_page') }}" class="hero-btn">
+            <svg class="custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            Khám phá sản phẩm ngay
+          </a>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-overlay"></div>
+        <img src="https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/28b86da4-52cc-4dd7-b420-f833362f9903/AS+M+NP+DF+TIGHT+TOP+SS.png" alt="Quần áo thể thao">
+        <div class="carousel-content">
+          <h1>Quần Áo Thể Thao Cao Cấp</h1>
+          <p>Áo thun, quần short, áo khoác gym với chất liệu thoáng mát, thấm hút mồ hôi</p>
+          <a href="{{ url_for('products_page') }}" class="hero-btn">
+            <svg class="custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6.5 6.5l-3 3m0 0l3 3m-3-3h5m10-3l3 3m0 0l-3 3m3-3h-5"></path>
+              <rect x="9" y="8" width="6" height="8" rx="1"></rect>
+            </svg>
+            Xem ngay
+          </a>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=600&fit=crop" alt="Thiết bị gym">
+        <div class="carousel-content">
+          <h1>Thiết Bị Gym Chuyên Nghiệp</h1>
+          <p>Tạ, dây tập, găng tay, thảm yoga và các dụng cụ tập luyện đa dạng</p>
+          <a href="{{ url_for('products_page') }}" class="hero-btn">
+            <svg class="custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+            Mua ngay
+          </a>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?w=1920&h=600&fit=crop" alt="Dụng cụ thể thao">
+        <div class="carousel-content">
+          <h1>Phụ Kiện Thể Thao Đa Dạng</h1>
+          <p>Balo, túi gym, bình nước, băng đô và các phụ kiện tiện ích khác</p>
+          <a href="{{ url_for('products_page') }}" class="hero-btn">
+            <svg class="custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+            Đặt hàng ngay
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="carousel-dots">
+      <span class="dot active" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </div>
+</section>
+
+<section style="margin-top: 3rem;">
+  <h2 style="text-align: center; font-size: 2rem; font-weight: 700; color: var(--dark); margin-bottom: 2rem;">
+    <svg class="custom-icon" style="color: var(--secondary); width: 32px; height: 32px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+    </svg>
+    Tại sao chọn chúng tôi?
+  </h2>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+    <!-- Feature 1: Chính hãng -->
+    <div class="feature-card" onclick="openFeatureModal('authentic')">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+        <svg class="custom-icon" style="width: 30px; height: 30px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Chính hãng 100%</h3>
+      <p style="color: var(--text-light); line-height: 1.6;">Cam kết sản phẩm chính hãng từ các thương hiệu uy tín</p>
+      <button class="feature-more-btn">Tìm hiểu thêm 
+        <svg class="custom-icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Feature 2: Giao hàng -->
+    <div class="feature-card" onclick="openFeatureModal('shipping')">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+        <svg class="custom-icon" style="width: 30px; height: 30px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="3" width="15" height="13"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Giao hàng nhanh</h3>
+      <p style="color: var(--text-light); line-height: 1.6;">Miễn phí vận chuyển cho đơn hàng trên 500.000đ</p>
+      <button class="feature-more-btn">Tìm hiểu thêm 
+        <svg class="custom-icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Feature 3: Giá tốt -->
+    <div class="feature-card" onclick="openFeatureModal('price')">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+        <svg class="custom-icon" style="width: 30px; height: 30px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+          <line x1="7" y1="7" x2="7.01" y2="7"></line>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Giá tốt nhất</h3>
+      <p style="color: var(--text-light); line-height: 1.6;">Giá cả cạnh tranh với nhiều ưu đãi hấp dẫn</p>
+      <button class="feature-more-btn">Tìm hiểu thêm 
+        <svg class="custom-icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Feature 4: Hỗ trợ -->
+    <div class="feature-card" onclick="openFeatureModal('support')">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-purple) 0%, #7c3aed 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
+        <svg class="custom-icon" style="width: 30px; height: 30px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+        </svg>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Hỗ trợ 24/7</h3>
+      <p style="color: var(--text-light); line-height: 1.6;">Đội ngũ tư vấn chuyên nghiệp luôn sẵn sàng</p>
+      <button class="feature-more-btn">Tìm hiểu thêm 
+        <svg class="custom-icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Modals -->
+<div id="featureModal" class="feature-modal">
+  <div class="feature-modal-content">
+    <span class="feature-modal-close" onclick="closeFeatureModal()">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// Carousel functionality
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(n) {
+  if (n >= slides.length) currentSlideIndex = 0;
+  if (n < 0) currentSlideIndex = slides.length - 1;
+  
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  slides[currentSlideIndex].classList.add('active');
+  dots[currentSlideIndex].classList.add('active');
+}
+
+function moveSlide(n) {
+  currentSlideIndex += n;
+  showSlide(currentSlideIndex);
+}
+
+function currentSlide(n) {
+  currentSlideIndex = n;
+  showSlide(currentSlideIndex);
+}
+
+// Auto slide
+setInterval(() => {
+  currentSlideIndex++;
+  showSlide(currentSlideIndex);
+}, 5000);
+
+// Feature Modal
+const featureContent = {
+  authentic: {
+    icon: 'fa-certificate',
+    color: 'var(--primary)',
+    title: 'Chính hãng 100%',
+    content: `
+      <h4>Cam kết chất lượng đỉnh cao</h4>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> Sản phẩm nhập khẩu trực tiếp từ hãng</li>
+        <li><i class="fas fa-check-circle"></i> Tem chống hàng giả đầy đủ</li>
+        <li><i class="fas fa-check-circle"></i> Giấy tờ xuất xứ rõ ràng</li>
+        <li><i class="fas fa-check-circle"></i> Bảo hành chính hãng từ nhà sản xuất</li>
+        <li><i class="fas fa-check-circle"></i> Đổi trả miễn phí nếu phát hiện hàng fake</li>
+        <li><i class="fas fa-check-circle"></i> Kiểm tra kỹ trước khi giao hàng</li>
+      </ul>
+      <p class="highlight">Chúng tôi làm việc trực tiếp với các thương hiệu lớn như Nike, Adidas, Puma, Under Armour... đảm bảo 100% sản phẩm chính hãng.</p>
+    `
+  },
+  shipping: {
+    icon: 'fa-shipping-fast',
+    color: 'var(--accent-green)',
+    title: 'Giao hàng nhanh chóng',
+    content: `
+      <h4>Dịch vụ vận chuyển tốc độ</h4>
+      <ul>
+        <li><i class="fas fa-truck"></i> Giao hàng nội thành trong 2-4 giờ</li>
+        <li><i class="fas fa-truck"></i> Giao hàng toàn quốc 1-3 ngày</li>
+        <li><i class="fas fa-truck"></i> Miễn phí ship cho đơn hàng từ 500.000đ</li>
+        <li><i class="fas fa-truck"></i> Đóng gói cẩn thận, chuyên nghiệp</li>
+        <li><i class="fas fa-truck"></i> Theo dõi đơn hàng realtime</li>
+        <li><i class="fas fa-truck"></i> Giao hàng tận nơi, nhận hàng mới thanh toán</li>
+      </ul>
+      <div class="shipping-areas">
+        <h5>Khu vực giao hàng:</h5>
+        <div class="areas-grid">
+          <span class="area-tag">TP.HCM</span>
+          <span class="area-tag">Hà Nội</span>
+          <span class="area-tag">Đà Nẵng</span>
+          <span class="area-tag">Cần Thơ</span>
+          <span class="area-tag">63 tỉnh thành</span>
+        </div>
+      </div>
+    `
+  },
+  price: {
+    icon: 'fa-tags',
+    color: 'var(--secondary)',
+    title: 'Giá cả cạnh tranh nhất',
+    content: `
+      <h4>Cam kết giá tốt nhất thị trường</h4>
+      <ul>
+        <li><i class="fas fa-percent"></i> Giảm giá định kỳ hàng tuần</li>
+        <li><i class="fas fa-percent"></i> Flash sale mỗi ngày</li>
+        <li><i class="fas fa-percent"></i> Voucher cho khách hàng thân thiết</li>
+        <li><i class="fas fa-percent"></i> Tích điểm đổi quà hấp dẫn</li>
+        <li><i class="fas fa-percent"></i> Giá sỉ cho đơn hàng số lượng lớn</li>
+        <li><i class="fas fa-percent"></i> So sánh giá - hoàn tiền nếu tìm được giá rẻ hơn</li>
+      </ul>
+      <div class="price-guarantee">
+        <h5><i class="fas fa-shield-alt"></i> Cam kết hoàn tiền 200%</h5>
+        <p>Nếu bạn tìm thấy sản phẩm cùng loại có giá thấp hơn ở nơi khác, chúng tôi sẽ hoàn lại 200% chênh lệch!</p>
+      </div>
+    `
+  },
+  support: {
+    icon: 'fa-headset',
+    color: 'var(--accent-purple)',
+    title: 'Hỗ trợ khách hàng 24/7',
+    content: `
+      <h4>Đội ngũ tư vấn chuyên nghiệp</h4>
+      <ul>
+        <li><i class="fas fa-phone-alt"></i> Hotline: 0343285733 (24/7)</li>
+        <li><i class="fas fa-comment"></i> Live chat trên website</li>
+        <li><i class="fas fa-envelope"></i> Email: nguyenminhdang0202@gmail.com</li>
+        <li><i class="fas fa-facebook"></i> Facebook Messenger</li>
+        <li><i class="fas fa-map-marker-alt"></i> Tư vấn trực tiếp tại cửa hàng</li>
+      </ul>
+      <div class="support-features">
+        <h5>Dịch vụ hỗ trợ:</h5>
+        <div class="support-grid">
+          <div class="support-item">
+            <i class="fas fa-user-tie"></i>
+            <span>Tư vấn chọn size</span>
+          </div>
+          <div class="support-item">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Hướng dẫn đổi trả</span>
+          </div>
+          <div class="support-item">
+            <i class="fas fa-tools"></i>
+            <span>Bảo hành sản phẩm</span>
+          </div>
+          <div class="support-item">
+            <i class="fas fa-question-circle"></i>
+            <span>Giải đáp thắc mắc</span>
+          </div>
+        </div>
+      </div>
+      <p class="highlight">Đội ngũ chuyên viên giàu kinh nghiệm sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi!</p>
+    `
+  }
+};
+
+function openFeatureModal(feature) {
+  const modal = document.getElementById('featureModal');
+  const content = featureContent[feature];
+  
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-icon" style="background: ${content.color};">
+        <i class="fas ${content.icon}"></i>
+      </div>
+      <h2>${content.title}</h2>
+    </div>
+    <div class="modal-body">
+      ${content.content}
+    </div>
+  `;
+  
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFeatureModal() {
+  document.getElementById('featureModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('featureModal');
+  if (event.target == modal) {
+    closeFeatureModal();
+  }
+}
+</script>
+{% endblock %}
